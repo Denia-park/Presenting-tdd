@@ -10,6 +10,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.List;
+
 @Configuration
 class WebClientConfig {
     @Value("${naver.client.id}")
@@ -41,7 +43,7 @@ class NaverSearchAPITest {
         int start = 1;
         String sort = "random";
 
-        String response = webClient.get()
+        SearchResult response = webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .queryParam("query", query)
                         .queryParam("display", display)
@@ -50,9 +52,15 @@ class NaverSearchAPITest {
                         .build())
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
-                .bodyToMono(String.class)
+                .bodyToMono(SearchResult.class)
                 .block();
 
         System.out.println(response);
     }
+}
+
+record SearchResult(String lastBuildDate, String total, String start, String display, List<Item> items) {
+}
+
+record Item(String title, String link, String category, String description, String telephone, String address, String roadAddress, String mapx, String map) {
 }
