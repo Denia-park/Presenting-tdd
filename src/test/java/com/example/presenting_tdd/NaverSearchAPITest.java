@@ -12,6 +12,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @Configuration
 class WebClientConfig {
     @Value("${naver.client.id}")
@@ -38,6 +40,11 @@ class NaverSearchAPITest {
 
     @Test
     void testApiCall() {
+        final SearchResult search = search();
+        assertThat(search.lastBuildDate()).hasSize(5);
+    }
+
+    private SearchResult search() {
         String query = "주식";
         int display = 5;
         int start = 1;
@@ -55,7 +62,7 @@ class NaverSearchAPITest {
                 .bodyToMono(SearchResult.class)
                 .block();
 
-        System.out.println(response);
+        return response;
     }
 }
 
