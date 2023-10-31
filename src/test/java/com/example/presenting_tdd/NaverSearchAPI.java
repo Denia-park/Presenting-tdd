@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.List;
+
 @Component
 public class NaverSearchAPI {
     @Autowired
@@ -56,5 +58,11 @@ public class NaverSearchAPI {
                     .defaultHeader("X-Naver-Client-Secret", clientSecret)
                     .build();
         }
+    }
+
+    record SearchResult(String lastBuildDate, String total, String start, String display, List<Item> items) {
+    }
+
+    record Item(String title, String link, String category, String description, String telephone, String address, String roadAddress, String mapx, String map) {
     }
 }
