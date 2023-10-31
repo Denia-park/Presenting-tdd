@@ -13,12 +13,7 @@ class NaverSearchAPITest {
 
     @Test
     void testApiCall() {
-        final NaverSearchAPI.SearchResult search = naverSearchAPI.search();
+        final NaverSearchAPI.SearchResult search = naverSearchAPI.search("주식", 5, 1, "random");
         assertThat(search.items()).hasSize(5);
-    }
-
-    private NaverSearchAPI.SearchResult search() {
-
-        return naverSearchAPI.search();
     }
 }

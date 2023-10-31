@@ -19,12 +19,7 @@ public class NaverSearchAPI {
     public NaverSearchAPI() {
     }
 
-    SearchResult search() {
-        String query = "주식";
-        int display = 5;
-        int start = 1;
-        String sort = "random";
-
+    SearchResult search(final String query, final int display, final int start, final String sort) {
         SearchResult response = webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .queryParam("query", query)
