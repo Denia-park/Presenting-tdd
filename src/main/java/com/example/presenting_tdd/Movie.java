@@ -7,6 +7,11 @@ public class Movie {
     public Movie() {
     }
 
+    public Movie(final String title, final MovieType type) {
+        this.title = title;
+        this.type = type;
+    }
+
     public Integer getFrequenceRenterPoints(final int daysRented1) {
         if (type == MovieType.NEW_RELEASE && daysRented1 > 1)
             return 2;

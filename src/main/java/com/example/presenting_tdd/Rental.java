@@ -1,15 +1,14 @@
 package com.example.presenting_tdd;
 
 public class Rental {
-    final Movie movie = new Movie();
+    Movie movie;
     int daysRented;
 
     public Rental() {
     }
 
     public Rental(final String title, final Movie.MovieType type, final int daysRented) {
-        this.movie.title = title;
-        this.movie.type = type;
+        this.movie = new Movie(title, type);
         this.daysRented = daysRented;
     }
 
