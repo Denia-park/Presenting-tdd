@@ -63,6 +63,18 @@ class CustomerTest {
         );
     }
 
+    @Test
+    void multipleRentals() {
+        customer.addRental("tittle", MovieType.CHILDRENS,3);
+        customer.addRental("tittle", MovieType.CHILDRENS,4);
+        customer.addRental("tittle", MovieType.REGULAR,   2);
+        customer.addRental("tittle", MovieType.REGULAR,   3);
+        customer.addRental("tittle", MovieType.NEW_RELEASE, 1);
+        customer.addRental("tittle", MovieType.NEW_RELEASE, 2);
+
+        assertThat(customer.getFrequenceRenterPoints()).isEqualTo(7);
+        assertThat(customer.getCharge()).isEqualTo(19.0);
+    }
 }
 
 /*
