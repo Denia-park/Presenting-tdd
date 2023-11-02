@@ -1,9 +1,6 @@
 package com.example.presenting_tdd;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 enum MovieType {
@@ -14,11 +11,15 @@ enum MovieType {
 
 @Getter
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type")
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    @Enumerated(EnumType.STRING)
+    @Column(insertable = false, updatable = false)
     private MovieType type;
 
     public Movie(final String title) {

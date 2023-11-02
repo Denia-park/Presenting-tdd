@@ -54,7 +54,7 @@ class AddRentalsAcceptanceTest {
                                     .then()
                                         .statusCode(200)
                                         .extract()
-                                        .as(Movie.class);
+                                        .as(ChildrensMovie.class);
 
         System.out.println(rentalResponse);
     }
