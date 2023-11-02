@@ -3,7 +3,7 @@ package com.example.presenting_tdd;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Customer {
+public class RentalCalculator {
     private List<Rental> rentals = new ArrayList<>();
 
     public void addRental(final String title, final Movie.MovieType type, final int daysRented) {

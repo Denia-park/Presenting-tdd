@@ -10,13 +10,13 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CustomerTest {
+class RentalCalculatorTest {
 
-    private Customer customer;
+    private RentalCalculator rentalCalculator;
 
     @BeforeEach
     void setUp() {
-        customer = new Customer();
+        rentalCalculator = new RentalCalculator();
     }
 
     @Test
@@ -31,9 +31,9 @@ class CustomerTest {
     }
 
     private void addRentalAndAssertPointsAndCharge(String title, Movie.MovieType movieType, final int daysRented, int expectedPoints, final double expectedCharge) {
-        customer.addRental(title, movieType, daysRented);
-        assertThat(customer.getFrequenceRenterPoints()).isEqualTo(expectedPoints);
-        assertThat(customer.getCharge()).isEqualTo(expectedCharge);
+        rentalCalculator.addRental(title, movieType, daysRented);
+        assertThat(rentalCalculator.getFrequenceRenterPoints()).isEqualTo(expectedPoints);
+        assertThat(rentalCalculator.getCharge()).isEqualTo(expectedCharge);
     }
 
     // property based test
@@ -56,15 +56,15 @@ class CustomerTest {
 
     @Test
     void multipleRentals() {
-        customer.addRental("tittle", Movie.MovieType.CHILDRENS,3);
-        customer.addRental("tittle", Movie.MovieType.CHILDRENS,4);
-        customer.addRental("tittle", Movie.MovieType.REGULAR,   2);
-        customer.addRental("tittle", Movie.MovieType.REGULAR,   3);
-        customer.addRental("tittle", Movie.MovieType.NEW_RELEASE, 1);
-        customer.addRental("tittle", Movie.MovieType.NEW_RELEASE, 2);
+        rentalCalculator.addRental("tittle", Movie.MovieType.CHILDRENS, 3);
+        rentalCalculator.addRental("tittle", Movie.MovieType.CHILDRENS, 4);
+        rentalCalculator.addRental("tittle", Movie.MovieType.REGULAR, 2);
+        rentalCalculator.addRental("tittle", Movie.MovieType.REGULAR, 3);
+        rentalCalculator.addRental("tittle", Movie.MovieType.NEW_RELEASE, 1);
+        rentalCalculator.addRental("tittle", Movie.MovieType.NEW_RELEASE, 2);
 
-        assertThat(customer.getFrequenceRenterPoints()).isEqualTo(7);
-        assertThat(customer.getCharge()).isEqualTo(19.0);
+        assertThat(rentalCalculator.getFrequenceRenterPoints()).isEqualTo(7);
+        assertThat(rentalCalculator.getCharge()).isEqualTo(19.0);
     }
 }
 
