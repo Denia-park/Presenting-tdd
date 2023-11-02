@@ -55,11 +55,11 @@ class CustomerTest {
     public static Stream<Arguments> provideMovieAndExpectedValues() {
         return Stream.of(
                 Arguments.of("childresMovie", MovieType.CHILDRENS, 3, 1, 1.5)
-                ,Arguments.of("childresMovie", MovieType.CHILDRENS, 4, 1, 3.0)
-//          ,Arguments.of("regularMovie", MovieType.REGULAR, 2, 1, 2.0)
-//          ,Arguments.of("regularMovie", MovieType.REGULAR, 3, 1, 3.5)
-//          ,Arguments.of("newReleaseMovie", MovieType.NEW_RELEASE, 1, 1, 3.0)
-//          ,Arguments.of("newReleaseMovie", MovieType.NEW_RELEASE, 2, 2, 6.0)
+                , Arguments.of("childresMovie", MovieType.CHILDRENS, 4, 1, 3.0)
+                , Arguments.of("regularMovie", MovieType.REGULAR, 2, 1, 2.0)
+                , Arguments.of("regularMovie", MovieType.REGULAR, 3, 1, 3.5)
+                , Arguments.of("newReleaseMovie", MovieType.NEW_RELEASE, 1, 1, 3.0)
+                , Arguments.of("newReleaseMovie", MovieType.NEW_RELEASE, 2, 2, 6.0)
         );
     }
 
