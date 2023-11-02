@@ -27,4 +27,9 @@ public class Movie {
 
     public Movie() {
     }
+
+    public Movie(final MovieType movieType, final String childrensMovieTitle) {
+        type = movieType;
+        title = childrensMovieTitle;
+    }
 }
