@@ -22,15 +22,6 @@ class CustomerTest {
 
     @Test
     void childrensMovieDaysRentedLTE3() {
-        // Arrange
-
-        // Act
-        customer.addRental("childrenMovie", MovieType.CHILDRENS, 3);
-
-        // Assert
-        assertThat(customer.getFrequenceRenterPoints()).isEqualTo(1);
-        assertThat(customer.getCharge()).isEqualTo(1.5);
-
         addRentalAndAssertPointsAndCharge("childrenMovie", MovieType.CHILDRENS, 3, 1, 1.5);
     }
 
@@ -65,7 +56,6 @@ class CustomerTest {
     }
 
     @Test
-    @Disabled
     void multipleRentals() {
         customer.addRental("tittle", MovieType.CHILDRENS,3);
         customer.addRental("tittle", MovieType.CHILDRENS,4);
