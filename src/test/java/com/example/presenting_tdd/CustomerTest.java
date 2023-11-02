@@ -24,14 +24,19 @@ class CustomerTest {
         // Assert
         assertThat(customer.getFrequenceRenterPoints()).isEqualTo(1);
         assertThat(customer.getCharge()).isEqualTo(1.5);
+
+        addRentalAndAssertPointsAndCharge("childresMovie", MovieType.CHILDRENS, 3, 1, 1.5);
     }
 
     @Test
     void childrensMovieDaysRentedGT3() {
-        customer.addRental("childresMovie", MovieType.CHILDRENS, 4);
+        addRentalAndAssertPointsAndCharge("childresMovie", MovieType.CHILDRENS, 4, 1, 3.0);
+    }
 
-        assertThat(customer.getFrequenceRenterPoints()).isEqualTo(1);
-        assertThat(customer.getCharge()).isEqualTo(3.0);
+    private void addRentalAndAssertPointsAndCharge(String title, MovieType movieType, final int daysRented, int expectedPoints, final double expectedCharge) {
+        customer.addRental(title, movieType, daysRented);
+        assertThat(customer.getFrequenceRenterPoints()).isEqualTo(expectedPoints);
+        assertThat(customer.getCharge()).isEqualTo(expectedCharge);
     }
 
 }
