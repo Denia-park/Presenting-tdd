@@ -7,9 +7,22 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(final String title, final MovieType type) {
+    protected Movie(final String title, final MovieType type) {
         this.title = title;
         this.type = type;
+    }
+
+    public static Movie of(final String title, final MovieType type) {
+        switch (type) {
+            case CHILDRENS:
+                return new ChildrenMovie(title, MovieType.CHILDRENS);
+            case REGULAR:
+                return new RegularMovie(title, MovieType.REGULAR);
+            case NEW_RELEASE:
+                return new NewReleaseMovie(title, MovieType.NEW_RELEASE);
+            default:
+                throw new IllegalArgumentException("Invalid movie type");
+        }
     }
 
     public Integer getFrequenceRenterPoints(final int daysRented1) {
