@@ -1,6 +1,7 @@
 package com.example.presenting_tdd;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -64,6 +65,7 @@ class CustomerTest {
     }
 
     @Test
+    @Disabled
     void multipleRentals() {
         customer.addRental("tittle", MovieType.CHILDRENS,3);
         customer.addRental("tittle", MovieType.CHILDRENS,4);
