@@ -12,11 +12,6 @@ public class Rental {
         this.daysRented = daysRented;
     }
 
-    public void addRental(final String title, final Movie.MovieType type, final int daysRented) {
-        this.movie.type = type;
-        this.daysRented = daysRented;
-    }
-
     public Integer getFrequenceRenterPoints(final int daysRented1) {
         return movie.getFrequenceRenterPoints(daysRented1);
     }
