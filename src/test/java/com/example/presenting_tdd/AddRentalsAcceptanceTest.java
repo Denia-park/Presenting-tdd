@@ -35,9 +35,9 @@ class AddRentalsAcceptanceTest {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
 
-        movieRepository.save(new Movie(MovieType.CHILDRENS, childrensMovieTitle));
-        movieRepository.save(new Movie(MovieType.REGULAR, regularMovieTitle));
-        movieRepository.save(new Movie(MovieType.NEW_RELEASE, newRelaseMovieTitle));
+        movieRepository.save(new ChildrensMovie(MovieType.CHILDRENS, childrensMovieTitle));
+        movieRepository.save(new RegularMovie(MovieType.REGULAR, regularMovieTitle));
+        movieRepository.save(new NewReleaseMovie(MovieType.NEW_RELEASE, newRelaseMovieTitle));
     }
 
     @AfterEach
