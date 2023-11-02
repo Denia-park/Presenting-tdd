@@ -2,6 +2,11 @@ package com.example.presenting_tdd;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,6 +33,7 @@ class CustomerTest {
         addRentalAndAssertPointsAndCharge("childrenMovie", MovieType.CHILDRENS, 3, 1, 1.5);
     }
 
+    // value based test
     @Test
     void childrensMovieDaysRentedGT3() {
         addRentalAndAssertPointsAndCharge("childrenMovie", MovieType.CHILDRENS, 4, 1, 3.0);
@@ -37,6 +43,24 @@ class CustomerTest {
         customer.addRental(title, movieType, daysRented);
         assertThat(customer.getFrequenceRenterPoints()).isEqualTo(expectedPoints);
         assertThat(customer.getCharge()).isEqualTo(expectedCharge);
+    }
+
+    // property based test
+    @ParameterizedTest
+    @MethodSource("provideMovieAndExpectedValues")
+    void addRentalForVariousCase(String title, MovieType movieType, final int daysRented, int expectedPoints, final double expectedCharge) {
+        addRentalAndAssertPointsAndCharge(title, movieType, daysRented, expectedPoints, expectedCharge);
+    }
+
+    public static Stream<Arguments> provideMovieAndExpectedValues() {
+        return Stream.of(
+                Arguments.of("childresMovie", MovieType.CHILDRENS, 3, 1, 1.5)
+                ,Arguments.of("childresMovie", MovieType.CHILDRENS, 4, 1, 3.0)
+//          ,Arguments.of("regularMovie", MovieType.REGULAR, 2, 1, 2.0)
+//          ,Arguments.of("regularMovie", MovieType.REGULAR, 3, 1, 3.5)
+//          ,Arguments.of("newReleaseMovie", MovieType.NEW_RELEASE, 1, 1, 3.0)
+//          ,Arguments.of("newReleaseMovie", MovieType.NEW_RELEASE, 2, 2, 6.0)
+        );
     }
 
 }
