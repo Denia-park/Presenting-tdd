@@ -11,7 +11,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import static io.restassured.RestAssured.given;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class AddRentalsAcceptanceTest {
+class AddRentalsAcceptanceTest {
     @Autowired
     private MovieRepository movieRepository;
     private String childrensMovieTitle = "childrensMovieTitle";
@@ -31,9 +31,9 @@ public class AddRentalsAcceptanceTest {
 
         final Movie rentalResponse =
                 given()
-                .when()
+                        .when()
                         .get("/rentals?title=childrensMovieTitle")
-                .then()
+                        .then()
                         .statusCode(200)
                         .extract()
                         .as(Movie.class);
