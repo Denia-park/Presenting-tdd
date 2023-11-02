@@ -12,4 +12,18 @@ public class NewReleaseMovie extends Movie {
 
     public NewReleaseMovie() {
     }
+
+    @Override
+    Double getCharge(final Integer daysRented1, final Rental rental) {
+        return daysRented1 * 3.0;
+    }
+
+    @Override
+    Integer getPoints(final Integer daysRented1, final Rental rental) {
+        Integer points = 1;
+        if (daysRented1 > 1) {
+            points++;
+        }
+        return points;
+    }
 }

@@ -12,4 +12,18 @@ public class ChildrensMovie extends Movie {
 
     public ChildrensMovie() {
     }
+
+    @Override
+    Double getCharge(final Integer daysRented1, final Rental rental) {
+        Double charge = 1.5;
+        if (daysRented1 > 3) {
+            charge += (daysRented1 - 3) * 1.5;
+        }
+        return charge;
+    }
+
+    @Override
+    Integer getPoints(final Integer daysRented1, final Rental rental) {
+        return 1;
+    }
 }
