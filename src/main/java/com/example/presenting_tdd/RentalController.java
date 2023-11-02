@@ -20,7 +20,7 @@ public class RentalController {
     public RentalResponse addRental(@RequestBody RentalRequest rentalRequest) {
         Movie movie = movieRepository.findByTitle(rentalRequest.title());
 
-        return new RentalCalculator().getRentalResponse(rentalRequest, movie);
+        return new RentalCalculator().getRentalResponse(movie, rentalRequest.daysRented());
     }
 }
 
