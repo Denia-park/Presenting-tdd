@@ -1,7 +1,6 @@
 package com.example.presenting_tdd;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -22,16 +21,16 @@ class CustomerTest {
 
     @Test
     void childrensMovieDaysRentedLTE3() {
-        addRentalAndAssertPointsAndCharge("childrenMovie", MovieType.CHILDRENS, 3, 1, 1.5);
+        addRentalAndAssertPointsAndCharge("childrenMovie", Movie.MovieType.CHILDRENS, 3, 1, 1.5);
     }
 
     // value based test
     @Test
     void childrensMovieDaysRentedGT3() {
-        addRentalAndAssertPointsAndCharge("childrenMovie", MovieType.CHILDRENS, 4, 1, 3.0);
+        addRentalAndAssertPointsAndCharge("childrenMovie", Movie.MovieType.CHILDRENS, 4, 1, 3.0);
     }
 
-    private void addRentalAndAssertPointsAndCharge(String title, MovieType movieType, final int daysRented, int expectedPoints, final double expectedCharge) {
+    private void addRentalAndAssertPointsAndCharge(String title, Movie.MovieType movieType, final int daysRented, int expectedPoints, final double expectedCharge) {
         customer.addRental(title, movieType, daysRented);
         assertThat(customer.getFrequenceRenterPoints()).isEqualTo(expectedPoints);
         assertThat(customer.getCharge()).isEqualTo(expectedCharge);
@@ -40,29 +39,29 @@ class CustomerTest {
     // property based test
     @ParameterizedTest
     @MethodSource("provideMovieAndExpectedValues")
-    void addRentalForVariousCase(String title, MovieType movieType, final int daysRented, int expectedPoints, final double expectedCharge) {
+    void addRentalForVariousCase(String title, Movie.MovieType movieType, final int daysRented, int expectedPoints, final double expectedCharge) {
         addRentalAndAssertPointsAndCharge(title, movieType, daysRented, expectedPoints, expectedCharge);
     }
 
     public static Stream<Arguments> provideMovieAndExpectedValues() {
         return Stream.of(
-                Arguments.of("childresMovie", MovieType.CHILDRENS, 3, 1, 1.5)
-                , Arguments.of("childresMovie", MovieType.CHILDRENS, 4, 1, 3.0)
-                , Arguments.of("regularMovie", MovieType.REGULAR, 2, 1, 2.0)
-                , Arguments.of("regularMovie", MovieType.REGULAR, 3, 1, 3.5)
-                , Arguments.of("newReleaseMovie", MovieType.NEW_RELEASE, 1, 1, 3.0)
-                , Arguments.of("newReleaseMovie", MovieType.NEW_RELEASE, 2, 2, 6.0)
+                Arguments.of("childresMovie", Movie.MovieType.CHILDRENS, 3, 1, 1.5)
+                , Arguments.of("childresMovie", Movie.MovieType.CHILDRENS, 4, 1, 3.0)
+                , Arguments.of("regularMovie", Movie.MovieType.REGULAR, 2, 1, 2.0)
+                , Arguments.of("regularMovie", Movie.MovieType.REGULAR, 3, 1, 3.5)
+                , Arguments.of("newReleaseMovie", Movie.MovieType.NEW_RELEASE, 1, 1, 3.0)
+                , Arguments.of("newReleaseMovie", Movie.MovieType.NEW_RELEASE, 2, 2, 6.0)
         );
     }
 
     @Test
     void multipleRentals() {
-        customer.addRental("tittle", MovieType.CHILDRENS,3);
-        customer.addRental("tittle", MovieType.CHILDRENS,4);
-        customer.addRental("tittle", MovieType.REGULAR,   2);
-        customer.addRental("tittle", MovieType.REGULAR,   3);
-        customer.addRental("tittle", MovieType.NEW_RELEASE, 1);
-        customer.addRental("tittle", MovieType.NEW_RELEASE, 2);
+        customer.addRental("tittle", Movie.MovieType.CHILDRENS,3);
+        customer.addRental("tittle", Movie.MovieType.CHILDRENS,4);
+        customer.addRental("tittle", Movie.MovieType.REGULAR,   2);
+        customer.addRental("tittle", Movie.MovieType.REGULAR,   3);
+        customer.addRental("tittle", Movie.MovieType.NEW_RELEASE, 1);
+        customer.addRental("tittle", Movie.MovieType.NEW_RELEASE, 2);
 
         assertThat(customer.getFrequenceRenterPoints()).isEqualTo(7);
         assertThat(customer.getCharge()).isEqualTo(19.0);
