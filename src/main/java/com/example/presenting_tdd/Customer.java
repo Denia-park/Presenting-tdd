@@ -7,8 +7,10 @@ enum MovieType {
 }
 
 public class Customer {
+    private int daysRented;
 
-    public void addRental(final String title, final MovieType movieType, final int days) {
+    public void addRental(final String title, final MovieType movieType, final int daysRented) {
+        this.daysRented = daysRented;
     }
 
     public Integer getFrequenceRenterPoints() {
@@ -16,6 +18,12 @@ public class Customer {
     }
 
     public Double getCharge() {
-        return 1.5;
+        double charge = 1.5;
+
+        if(daysRented > 3) {
+            charge += (daysRented - 3) * 1.5;
+        }
+
+        return charge;
     }
 }

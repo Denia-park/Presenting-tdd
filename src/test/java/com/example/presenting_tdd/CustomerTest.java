@@ -26,6 +26,14 @@ class CustomerTest {
         assertThat(customer.getCharge()).isEqualTo(1.5);
     }
 
+    @Test
+    void childrensMovieDaysRentedGT3() {
+        customer.addRental("childresMovie", MovieType.CHILDRENS, 4);
+
+        assertThat(customer.getFrequenceRenterPoints()).isEqualTo(1);
+        assertThat(customer.getCharge()).isEqualTo(3.0);
+    }
+
 }
 
 /*
