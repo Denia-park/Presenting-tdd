@@ -20,28 +20,7 @@ public class RentalController {
     public RentalResponse addRental(@RequestBody RentalRequest rentalRequest) {
         Movie movie = movieRepository.findByTitle(rentalRequest.title());
 
-        Integer points = 1;
-        if (movie.getType() == MovieType.NEW_RELEASE && rentalRequest.daysRented() > 1) {
-            points++;
-        }
-
-        Double charge = 0.0;
-        if(movie.getType() == MovieType.CHILDRENS) {
-            charge = 1.5;
-            if (rentalRequest.daysRented() > 3) {
-                charge += (rentalRequest.daysRented() - 3) * 1.5;
-            }
-        }
-        else if(movie.getType() == MovieType.REGULAR) {
-            charge = 2.0;
-            if (rentalRequest.daysRented() > 2) {
-                charge += (rentalRequest.daysRented() - 2) * 1.5;
-            }
-        }
-        else if(movie.getType() == MovieType.NEW_RELEASE) {
-            charge = rentalRequest.daysRented() * 3.0;
-        }
-        return new RentalResponse(points, charge);
+        return new RentalCalculator().getRentalResponse(rentalRequest, movie);
     }
 }
 
