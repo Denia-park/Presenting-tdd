@@ -1,9 +1,6 @@
 package com.example.presenting_tdd;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rentals")
@@ -18,4 +15,15 @@ public class RentalController {
     public Movie getRentals(@RequestParam String title) {
         return movieRepository.findByTitle(title);
     }
+
+    @PostMapping
+    public RentalResponse addRental(@RequestBody RentalRequest rentalRequest) {
+        return new RentalResponse(1, 1.5);
+    }
+}
+
+record RentalRequest(String title, Integer daysRented) {
+}
+
+record RentalResponse(Integer frequentRentalPoints, Double charge) {
 }
