@@ -19,18 +19,18 @@ class CustomerTest {
         // Arrange
 
         // Act
-        customer.addRental("childresMovie", MovieType.CHILDRENS, 3);
+        customer.addRental("childrenMovie", MovieType.CHILDRENS, 3);
 
         // Assert
         assertThat(customer.getFrequenceRenterPoints()).isEqualTo(1);
         assertThat(customer.getCharge()).isEqualTo(1.5);
 
-        addRentalAndAssertPointsAndCharge("childresMovie", MovieType.CHILDRENS, 3, 1, 1.5);
+        addRentalAndAssertPointsAndCharge("childrenMovie", MovieType.CHILDRENS, 3, 1, 1.5);
     }
 
     @Test
     void childrensMovieDaysRentedGT3() {
-        addRentalAndAssertPointsAndCharge("childresMovie", MovieType.CHILDRENS, 4, 1, 3.0);
+        addRentalAndAssertPointsAndCharge("childrenMovie", MovieType.CHILDRENS, 4, 1, 3.0);
     }
 
     private void addRentalAndAssertPointsAndCharge(String title, MovieType movieType, final int daysRented, int expectedPoints, final double expectedCharge) {
