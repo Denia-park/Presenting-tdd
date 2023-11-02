@@ -8,8 +8,12 @@ public class Rental {
     }
 
     public Rental(final String title, final Movie.MovieType type, final int daysRented) {
-        this.movie = Movie.of(title, type);
+        this.movie = MovieRepository.findMovieBy(title, type);
         this.daysRented = daysRented;
+    }
+
+    private Movie findMovieBy(final String title, final Movie.MovieType type) {
+        return MovieRepository.findMovieBy(title, type);
     }
 
     public Integer getFrequenceRenterPoints(final int daysRented1) {
