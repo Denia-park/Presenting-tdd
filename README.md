@@ -24,3 +24,10 @@
   - 슬라이드 자료 0,1,2,3
 - [Presenting TDD - Mockist](https://www.youtube.com/watch?v=ly-TmUuIXyw)
   - 슬라이드 자료 4
+
+### Transformation ([링크](https://github.com/msbaek/memo/blob/master/TPP.md))
+- refactoring 과 대응 관계
+  - Transformation : 구조의 변경 없이 행위를 변경하기 위해 소스 코드에 작은 변경을 가하는 것
+- 좋은 알고리즘을 얻기 위한 우선 순위 존재
+  - transformation의 우선순위를 잘 적용하면, 보다 나은 알고리즘을 얻을 수 있다.
+  - 중요한 구현을 미루는 것이 좋은 알고리즘으로 안내한다.
